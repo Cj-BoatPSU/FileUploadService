@@ -1,0 +1,6 @@
+-SQL Server (Local)
+Scaffold-DbContext "Server=(localdb)\Local;Initial Catalog=B1_XBgSbO;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DBModels -ContextDir Context -Context CoreContext -force 
+-SQL Server (Plesk Server)
+Scaffold-DbContext "Server=49.0.203.175;Initial Catalog=ASM2023_DB;User Id=asm2023_user;Password=38l#xs3B8;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DBModels -ContextDir Context -Context CoreContext -force 
+-MySQL
+Scaffold-DbContext "datasource=localhost;port=3306;user=root;database=asmsyste_base_db;" MySql.EntityFrameworkCore -OutputDir Models/DBModels -ContextDir Context -Context CoreContext -force
