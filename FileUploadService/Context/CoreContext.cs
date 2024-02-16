@@ -17,6 +17,7 @@ namespace FileUploadService.Context
         {
         }
 
+        public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<FileTable> FileTables { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,6 +30,21 @@ namespace FileUploadService.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>(entity =>
+            {
+                entity.ToTable("Account");
+
+                entity.Property(e => e.AccountId).ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedDt).HasColumnName("Created_DT");
+
+                entity.Property(e => e.Password).HasMaxLength(200);
+
+                entity.Property(e => e.UpdatedDt).HasColumnName("Updated_DT");
+
+                entity.Property(e => e.Username).HasMaxLength(200);
+            });
+
             modelBuilder.Entity<FileTable>(entity =>
             {
                 entity.HasKey(e => e.FileId);
