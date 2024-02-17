@@ -14,6 +14,12 @@ namespace FileUploadService.Services
     }
     public class File_Service : IFile_Service
     {
+        private IEmail_Service _email_Service;
+
+        public File_Service(IEmail_Service email_Service)
+        {
+            _email_Service = email_Service;
+        }
         public async Task<FileTable> UploadFile(UploadFile_Req req)
         {
             DateTime TxTimestamp = DateTime.UtcNow;
@@ -47,9 +53,15 @@ namespace FileUploadService.Services
                     new_file.Path = exactpath;
                     new_file.UpdatedDt = TxTimestamp;
                     new_file.CreatedDt = TxTimestamp;
+                    new_file.AccountId = req.AccountId;
                     _coreContext.FileTables.Add(new_file);
                     await _coreContext.SaveChangesAsync();
+
+                    //Send Mail
+                    Account acc = _coreContext.Accounts.FirstOrDefault(x => x.AccountId == req.AccountId && x.IsDeleted == false);
+                    await _email_Service.SendAsync("#System File Upload Service", new List<string>() { acc.Username }, new List<string>(), "File Upload Service", "<pre>Upload File Name : " + req.File.FileName + "\r\n Path : " + exactpath + "</pre>");
                 }
+
             }
             catch (Exception ex)
             {

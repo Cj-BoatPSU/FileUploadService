@@ -13,5 +13,6 @@ namespace FileUploadService.Models.DBModels
         public DateTime? UpdatedDt { get; set; }
         public DateTime? CreatedDt { get; set; }
         public bool IsDeleted { get; set; }
+        public int? AccountId { get; set; }
     }
 }

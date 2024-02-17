@@ -5,6 +5,7 @@
         public class UploadFile_Req
         {
             public IFormFile? File { get; set; }
+            public int? AccountId { get; set; }
         }
 
         public class DownloadFile_Req

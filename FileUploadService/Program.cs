@@ -21,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAuthentication_Service, Authentication_Service>();
 builder.Services.AddScoped<IFile_Service, File_Service>();
+builder.Services.AddScoped<IEmail_Service, Email_Service>();
 
 string connString_DbCore = "Server=(localdb)\\Local;Initial Catalog=B1_XBgSbO;Trusted_Connection=True;";
 builder.Services.AddDbContext<CoreContext>(options =>

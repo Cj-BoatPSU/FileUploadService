@@ -30,6 +30,21 @@ namespace FileUploadService.Controllers
         {
             try
             {
+                if (req.File == null)
+                {
+                    return StatusCode(400, new ResponseModel()
+                    {
+                        status = 400,
+                        errors = new ExceptionModel() { message = "File must be have." }
+                    });
+                }
+
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var handler = new JwtSecurityTokenHandler();
+                var token_Payload = handler.ReadJwtToken(accessToken).Payload;
+                int? _accountId = int.Parse(token_Payload.Sub);
+                req.AccountId = _accountId;
+
 
                 FileTable res = await _file_Service.UploadFile(req);
 
