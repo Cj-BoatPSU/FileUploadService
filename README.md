@@ -11,6 +11,11 @@
 
 ![](/Pic/2.PNG)
 
+## Send Mail
+<p> หลังจากที่ Upload File ก็จะมีการแจ้งเตือนโดยการส่ง Mail </p>
+
+![](/Pic/9.PNG)
+
 # GetInfo API
 
 ![](/Pic/3.PNG)
