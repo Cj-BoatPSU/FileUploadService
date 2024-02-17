@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "74f3bd2f-8e8b-43c8-99e2-1ff68e91b272",
+		"name": "FileUploadService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12164664"
+	},
+	"item": [
+		{
+			"name": "UploadFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "File",
+							"type": "file",
+							"src": "/C:/Users/zchutiwat.j/Downloads/zbg18.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host_url}}/FileUploadService/api/File/UploadFile",
+					"host": [
+						"{{host_url}}"
+					],
+					"path": [
+						"FileUploadService",
+						"api",
+						"File",
+						"UploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 200) {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"access_token\", jsonData.data.accessToken);\r",
+							"}\r",
+							"\r",
+							"// pm.test(\"Status code is 200\", () => {\r",
+							"//   var jsonData = pm.response.json();\r",
+							"//   pm.environment.set(\"access_token\", jsonData.data.accessToken);\r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"chutiwat.boat@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}/FileUploadService/api/Authentication/Login",
+					"host": [
+						"{{host_url}}"
+					],
+					"path": [
+						"FileUploadService",
+						"api",
+						"Authentication",
+						"Login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"chutiwat.boat@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_url}}/Authentication/Login",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"Authentication",
+								"Login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Apr 2023 12:43:28 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjaHV0aXdhdC5ib2F0QGdtYWlsLmNvbSIsIm5iZiI6MTY4MTk5NDYwNSwiZXhwIjoxNjgyMDgxMDA1LCJpc3MiOiJvcy1iYWNrZW5kIn0.65Uy1tVxFULx5l4LXEmDTco6eY5HPvWgCPAS4hV1uN7yTEqti6hT4IrW9QxWESvuhOOubZcRHy18WeubbCGAFg\",\n        \"expireTime\": \"2023-04-21T12:43:25.8372518Z\"\n    },\n    \"errors\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "GetInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}/FileUploadService/api/File/GetInfo?fileId=4",
+					"host": [
+						"{{host_url}}"
+					],
+					"path": [
+						"FileUploadService",
+						"api",
+						"File",
+						"GetInfo"
+					],
+					"query": [
+						{
+							"key": "fileId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DownloadFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FileId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}/FileUploadService/api/File/DownloadFile",
+					"host": [
+						"{{host_url}}"
+					],
+					"path": [
+						"FileUploadService",
+						"api",
+						"File",
+						"DownloadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FileId\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}/FileUploadService/api/File/DeleteFile",
+					"host": [
+						"{{host_url}}"
+					],
+					"path": [
+						"FileUploadService",
+						"api",
+						"File",
+						"DeleteFile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6IkFkbWluIiwibmJmIjoxNzA4MDY4NDgxLCJleHAiOjE3MDgxNTQ4ODEsImlzcyI6ImZpbGV1cGxvYWQtc2VydmljZSJ9.sjMQ6MN1CGQ4ZfUx8P_kOBK08Vs0vZAe9uobnHv5sdpLv6BaER-Mos6LWDBsdh-BkAkGQcZX6yHplMVBz9uXjw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
