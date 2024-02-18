@@ -16,6 +16,11 @@
 
 ![](/Pic/9.PNG)
 
+## Upload Folder
+<p> หลังจากที่ Upload File จะถูกเก็บไว้ใน Server อยู่ใน Upload Folder ดังภาพ </p>
+
+![](/Pic/10.PNG)
+
 # GetInfo API
 
 ![](/Pic/3.PNG)
